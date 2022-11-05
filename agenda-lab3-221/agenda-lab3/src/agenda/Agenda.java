@@ -67,14 +67,16 @@ public class Agenda {
 	 */
 	public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
 		Contato contato = new Contato(nome, sobrenome, telefone);
-		if (nome.equals("") || sobrenome.equals("")) {
+		if (nome.equals("")){
 			System.out.println("CONTATO INVALIDO");
+			throw new IllegalArgumentException("CONTATO INVALIDO AO MENOS O NOME DEVE SER PREENCHIDO");
 		}
 
 		if (posicao > 100 || posicao < 1) {
 			System.out.println("POSICAO INVALIDA");
 		} else if (jaCadastrado(contato)) {
 			System.out.println("CONTATO JÁ CADASTRADO");
+			throw new IllegalArgumentException("CONTATO JA CADASTRADO");
 		} else {
 			System.out.println("CADASTRO REALIZADO");
 			this.contatos[posicao - 1] = contato;
